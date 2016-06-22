@@ -13,6 +13,7 @@
 (function(){
     document.addEventListener('DOMNodeInserted', function(){
         var link = null;
+        var buttons;
         var flagPopupBlocks = document.querySelectorAll('.flags-popup div');
         if (flagPopupBlocks.length == 0 || flagPopupBlocks.length != 3) return;
         for(var i = 0; i < flagPopupBlocks.length; i++){
@@ -22,6 +23,7 @@
                 var links = flagPopupBlocks[i].querySelectorAll('a');
                 if (links.length == 0) continue;
                 link = links[1];
+                buttons = links[2];
             }
         }
         if (link == null) return;
@@ -48,9 +50,23 @@
                         if (current.nodeName == "#text") current = current.previousSibling;
                         contextMessages.push(current);
                     }
+                    var rows = [];
+                    // contextMessages.forEach(function(messageBlock){
+                    //     var author = messageBlock.querySelector('.signature').innerText;
+                    //     var content = messageBlock.querySelectorAll('.message').map(function(msg){
+                    //         return msg.querySelector('.content').innerText;
+                    //     }).forEach(function(msg){
+                    //         rows.push(author + ': ' + msg);
+                    //     })
+                    // });
                     flagPopupBlocks.innerHTML = '<div class="block">' + contextMessages.map(function(msg){
-                        return msg.innerHTML;
-                    }).join('') + '</div>';
+                        return '<div class="monologue">' + msg.innerHTML + '</div>';
+                    }).join('') + '</div>' +
+                    '<div>' +
+                        '<button class="button reflag" title="agree that this message is spam or offensive">valid</button>' +
+                        '<button class="button counterflag" title="this message is neither spam nor offensive">invalid</button>' +
+                        '<button class="button mehflag" title="no strong opinion">not sure</button>' +
+                    '</div>';
                     var objDiv = document.querySelector("div.block");
                     objDiv.scrollTop = objDiv.scrollHeight;
                 }
