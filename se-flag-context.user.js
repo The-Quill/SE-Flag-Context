@@ -45,7 +45,7 @@
                         selectedMessage
                     ];
                     var current = selectedMessage;
-                    for (var i = 6; i > 0; i--){
+                    for (var i = 24; i > 0; i--){
                         current = current.previousSibling;
                         if (current.nodeName == "#text") current = current.previousSibling;
                         contextMessages.push(current);
