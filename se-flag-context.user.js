@@ -8,7 +8,11 @@
 // @connect        rawgit.com
 // @connect        github.com
 // @grant          GM_xmlhttpRequest
+// @grant          GM_getResourceText
+// @resource       theme    https://raw.githubusercontent.com/The-Quill/SE-Flag-Context/master/se-flag-context.user.css
 // ==/UserScript==
+
+GM_addStyle(GM_getResourceText('theme'));
 
 (function(){
     document.addEventListener('DOMNodeInserted', function(){
