@@ -1,0 +1,10 @@
+.flags-popup {
+    position: fixed;
+    top: 6%;
+    z-index: 1000;
+    left: 8% !important;
+    width: 80% !important;
+    height: 80%;
+    max-width: none !important;
+    min-width: 0 !important;
+}
